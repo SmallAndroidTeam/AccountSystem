@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg_right"
+    >
+
+    <RelativeLayout
+        android:layout_toLeftOf="@+id/mainFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_toLeftOf="@+id/middleLayout"
+            android:layout_width="wrap_content"
+            android:background="#25af9f"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:src="@mipmap/left"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_alignParentRight="true"
+            android:id="@+id/middleLayout"
+            android:layout_height="match_parent"
+
+            android:layout_width="540px"
+            >
+            <RelativeLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                >
+                <ImageView
+                    android:layout_width="180px"
+                    android:layout_height="match_parent"
+
+                    android:id="@+id/bgmenu"
+                    android:src="@drawable/bg_menu"
+                    />
+
+                <!--<RelativeLayout-->
+                <!--android:id="@+id/rl_bluetooth"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="90px"-->
+                <!--&gt;-->
+                <!--<ImageView-->
+                <!--android:id="@+id/iv_bluetooth"-->
+                <!--android:layout_marginLeft="100px"-->
+                <!--android:layout_width="435px"-->
+                <!--android:layout_height="120px"-->
+                <!--android:background="@drawable/bg_choose"-->
+
+                <!--/>-->
+                <!--<ImageView-->
+                <!--android:layout_marginTop="30px"-->
+                <!--android:layout_marginLeft="150px"-->
+                <!--android:layout_width="60px"-->
+                <!--android:layout_height="60px"-->
+                <!--android:background="@drawable/check_mark"-->
+                <!--/>-->
+                <!--</RelativeLayout>-->
+                <RelativeLayout
+                    android:id="@+id/rl_fingerprint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="80px"
+                    android:layout_marginLeft="60px"
+                    >
+                    <ImageView
+                        android:id="@+id/iv_fingerprint"
+                        android:layout_marginLeft="0px"
+                        android:layout_width="435px"
+                        android:layout_height="120px"
+                        android:background="@drawable/bg_choose"
+
+                        />
+                    <ImageView
+                        android:layout_marginTop="30px"
+                        android:layout_marginLeft="50px"
+                        android:layout_width="60px"
+                        android:layout_height="60px"
+                        android:background="@drawable/check_mark"
+                        />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_seat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="210px"
+                    android:paddingLeft="75px"
+                    >
+                    <ImageView
+                        android:id="@+id/iv_seat"
+                        android:layout_marginLeft="0px"
+                        android:layout_width="435px"
+                        android:layout_height="120px"
+                        android:src="@drawable/bg_choose"
+
+                        />
+                    <ImageView
+                        android:layout_marginTop="30px"
+                        android:layout_marginLeft="50px"
+                        android:layout_width="60px"
+                        android:layout_height="60px"
+                        android:background="@drawable/check_mark"
+
+                        />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_holographic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="340px"
+                    android:paddingLeft="50px"
+                    >
+                    <ImageView
+                        android:id="@+id/iv_holographic"
+                        android:layout_marginLeft="0px"
+                        android:layout_width="445px"
+                        android:layout_height="120px"
+                        android:background="@drawable/bg_choose"
+
+                        />
+                    <ImageView
+                        android:layout_marginTop="30px"
+                        android:layout_marginLeft="50px"
+                        android:layout_width="60px"
+                        android:layout_height="60px"
+                        android:background="@drawable/check_mark"
+
+                        />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/rl_return"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="470px"
+                    android:paddingLeft="15px"
+                    >
+                    <ImageView
+                        android:id="@+id/iv_return"
+                        android:layout_marginLeft="0px"
+                        android:layout_width="435px"
+                        android:layout_height="120px"
+                        android:background="@drawable/bg_choose"
+
+                        />
+                    <ImageView
+                        android:layout_marginTop="30px"
+                        android:layout_marginLeft="50px"
+                        android:layout_width="60px"
+                        android:layout_height="60px"
+                        android:background="@drawable/check_mark"
+                        />
+                </RelativeLayout>
+            </RelativeLayout>
+            <RelativeLayout
+
+                android:layout_alignParentRight="true"
+                android:layout_width="310px"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/tv_fingerprint"
+                    android:layout_marginTop="110px"
+                    android:layout_marginLeft="40px"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/white_1"
+                    android:textSize="45px"
+                    android:text="指纹录入"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_seat"
+                    android:layout_marginTop="240px"
+                    android:layout_marginLeft="45px"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/white_1"
+                    android:textSize="45px"
+                    android:text="座椅"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_holographic"
+                    android:layout_marginTop="370px"
+                    android:layout_marginLeft="15px"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="45px"
+                    android:textColor="@color/white_1"
+                    android:text="全息"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_return"
+                    android:layout_marginTop="500px"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="45px"
+                    android:textColor="@color/white_1"
+                    android:text="返回"
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+    <FrameLayout
+
+        android:layout_alignParentRight="true"
+        android:id="@+id/mainFragment"
+        android:layout_width="2020px"
+        android:layout_height="match_parent">
+    </FrameLayout>
+</RelativeLayout>

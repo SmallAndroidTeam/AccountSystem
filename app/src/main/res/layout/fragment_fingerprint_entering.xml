@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg_right"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="0px"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/back1"
+            android:layout_width="300px"
+            android:layout_height="550px"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/bg_add" />
+
+        <ImageView
+            android:id="@+id/icon_add1"
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:layout_marginTop="150px"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/icon_add" />
+        <ImageView
+            android:id="@+id/icon_arrow1"
+            android:layout_width="60px"
+            android:layout_height="60px"
+            android:layout_marginTop="380px"
+            android:layout_toRightOf="@id/icon_add1"
+            android:src="@mipmap/icon_arrow" />
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingTop="35px"
+            android:textSize="45px"
+            android:layout_below="@id/icon_add1"
+            android:text="@string/add_fingerprint" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="0px"
+        android:id="@+id/first_user"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/back2"
+            android:layout_width="300px"
+            android:layout_height="550px"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/noface" />
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="380px"
+            android:textSize="45px"
+            android:text="暂无人脸"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="0px"
+        android:id="@+id/second_user"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/back3"
+            android:layout_width="300px"
+            android:layout_height="550px"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/noface" />
+        <TextView
+            android:id="@+id/text3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="380px"
+            android:textSize="45px"
+            android:text="暂无人脸"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="0px"
+        android:id="@+id/third_user"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/back4"
+            android:layout_width="300px"
+            android:layout_height="550px"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/noface" />
+
+        <TextView
+            android:id="@+id/text4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="380px"
+            android:textSize="45px"
+            android:text="暂无人脸"
+            />
+
+    </RelativeLayout>
+</LinearLayout>

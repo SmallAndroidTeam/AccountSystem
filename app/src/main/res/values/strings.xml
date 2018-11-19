@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">AccountSystem</string>
+    <string name="add_fingerprint">添加指纹</string>
+    <string name="add_face">添加人脸</string>
+    <string name="name">姓名：点击添加姓名</string>
+    <string name="fingerprint">指纹：指纹未关联</string>
+    <string name="face">人脸：人脸未关联</string>
+    <string name="correlation">关联：未关联</string>
+    <string name="add_fingerprint_succeed">添加指纹成功 \n 添加成功的指纹将出现在指纹列表里</string>
+    <string name="associateface_succeed">添加成功 \n 添加成功的人脸id将出现在人脸id列表里</string>
+    <string name="associateface">指纹已添加成功 \n 是否关联对应的人脸ID</string>
+    <string name="associatefinger">放置手指 \n 请将手指放置在按钮上在移开 重复此步骤</string>
+    <string name="associate_face">对准镜头 \n 请对准镜头，根据提示操作</string>
+    <string name="association">为了您的账号安全\n 请您同时认证指纹以及人脸信息</string>
+    <string name="start_fingerprint">指纹认证即将开始\n 指纹认证即将开始，请将手指放在按钮上</string>
+    <string name="start_face">人脸识别认证即将开启\n 人脸识别认证即将开启，请对准镜头</string>
+    <string name="delete">确认删除此用户信息\n 此项操作会同步删除用户的指纹、人脸认证以及座椅设置</string>
+    <string name="seat">座椅信息可以通过扶手调整\n 调整后的座椅信息将会自动存储到当前用户中</string>
+</resources>

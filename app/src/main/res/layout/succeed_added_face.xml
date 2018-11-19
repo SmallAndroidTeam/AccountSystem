@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg_right"
+    android:orientation="vertical">
+    <ImageView
+        android:id="@+id/add_succeed_icon"
+        android:layout_width="300px"
+        android:layout_height="300px"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/face_add_succeed" />
+    <ImageView
+        android:id="@+id/anim"
+        android:src="@drawable/finger_true"
+        android:layout_width="50px"
+        android:layout_height="50px"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="265px"
+        />
+    <TextView
+        android:id="@+id/add_succeed"
+        android:paddingTop="20px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="50px"
+        android:layout_below="@id/add_succeed_icon"
+        android:maxLines="2"
+        android:textColor="@color/white"
+        android:text="@string/associateface_succeed"/>
+</RelativeLayout>
