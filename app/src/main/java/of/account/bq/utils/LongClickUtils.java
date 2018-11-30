@@ -1,5 +1,6 @@
 package of.account.bq.utils;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnLongClickListener;
@@ -11,6 +12,7 @@ import android.view.View.OnTouchListener;
 public class LongClickUtils {
 
     private static final String TAG = "LongClickUtils";
+    private static boolean flag=false;
 
     /**
      * @param handler           外界handler(为了减少handler的泛滥使用,最好全局传handler引用,如果没有就直接传 new Handler())
@@ -40,10 +42,13 @@ public class LongClickUtils {
                             // 移动误差阈值
                             // xy方向判断
                             // 移动超过阈值，则表示移动了,就不是长按(看需求),移除 已有的Runnable回调
+                            flag=true;
                             handler.removeCallbacks(r);
                         }
+
                         break;
                     case MotionEvent.ACTION_DOWN:
+                        flag=false;
                         // 每次按下重新计时
                         // 按下前,先移除 已有的Runnable回调,防止用户多次单击导致多次回调长按事件的bug
                         handler.removeCallbacks(r);
@@ -53,7 +58,8 @@ public class LongClickUtils {
                         handler.postDelayed(r, delayMillis);
                         break;
                 }
-                return true;//onclick等其他事件不能用请改这里
+                return flag;
+                //onclick等其他事件不能用请改这里
             }
 
             private Runnable r = new Runnable() {
@@ -61,6 +67,8 @@ public class LongClickUtils {
                 public void run() {
                     if (longClickListener != null) {// 回调给用户,用户可能传null,需要判断null
                         longClickListener.onLongClick(longClickView);
+                        flag=true;
+
                     }
                 }
             };

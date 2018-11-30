@@ -69,7 +69,7 @@ public class StartAssociateFingerPromptFragment extends Fragment {
                         getFragmentManager()
                                 .beginTransaction()
                                 .addToBackStack(null)
-                                .replace(R.id.mainFragment, MainActivity.fragmentreplace).commit();
+                                .add(R.id.mainFragment, MainActivity.fragmentreplace).commit();
                     }
 
                     @Override

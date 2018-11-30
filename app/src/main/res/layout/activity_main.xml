@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/bg_right"
+    android:background="@mipmap/background"
     >
 
     <RelativeLayout
@@ -14,7 +14,6 @@
         <RelativeLayout
             android:layout_toLeftOf="@+id/middleLayout"
             android:layout_width="wrap_content"
-            android:background="#25af9f"
             android:layout_height="wrap_content">
             <ImageView
                 android:layout_width="match_parent"
@@ -30,7 +29,6 @@
             android:layout_alignParentRight="true"
             android:id="@+id/middleLayout"
             android:layout_height="match_parent"
-
             android:layout_width="540px"
             >
             <RelativeLayout
@@ -40,7 +38,6 @@
                 <ImageView
                     android:layout_width="180px"
                     android:layout_height="match_parent"
-
                     android:id="@+id/bgmenu"
                     android:src="@drawable/bg_menu"
                     />

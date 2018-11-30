@@ -1,5 +1,6 @@
 package of.account.bq.database;
 
+import android.app.Person;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -106,6 +107,19 @@ public class DataOperator {
     }
 
 
+    public boolean CheckIsNameAlreadyInDB(String name) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        String Query = "Select * from person_info where  name =?";
+        Cursor cursor = db.rawQuery(Query, new String[]{name});
+        if (cursor.getCount() > 0) {
+            cursor.close();
+            return true;
+        }
+        cursor.close();
+        return false;
+    }
+
+
     // 查询所有的注册信息
     public List<PersonInfo> queryMany() {
         ArrayList<PersonInfo> personInfos = new ArrayList<PersonInfo>();
@@ -126,5 +140,23 @@ public class DataOperator {
         c.close();
         return personInfos;
     }
+    public PersonInfo queryOne(String name) {
+        PersonInfo  personInfo = new PersonInfo();
+        Cursor c = db.rawQuery("select * from person_info where name = ?", new String[]{name}, null);
+        while (c.moveToNext()) {
 
+            //第一步，从数据库中读取出相应数据，并保存在字节数组中
+            byte[] blob = c.getBlob(c.getColumnIndex("face"));
+            //第二步，调用BitmapFactory的解码方法decodeByteArray把字节数组转换为Bitmap对象
+            Bitmap bmp = BitmapFactory.decodeByteArray(blob, 0, blob.length);
+            //第三步，调用BitmapDrawable构造函数生成一个BitmapDrawable对象，该对象继承Drawable对象，所以在需要处直接使用该对象即可
+            BitmapDrawable bd = new BitmapDrawable(bmp);
+            personInfo.setFace(bd);
+            personInfo.setFingerId(c.getString(1));
+            personInfo.setName(c.getString(2));
+
+        }
+        c.close();
+        return personInfo;
+    }
 }

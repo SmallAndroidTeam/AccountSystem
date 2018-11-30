@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:background="@mipmap/bg_right">
+    >
 <RelativeLayout
     android:layout_width="0dp"
     android:layout_weight="1"
@@ -18,17 +18,25 @@
         android:src="@mipmap/bg_image"
         />
 <of.account.bq.utils.RoundImageView
-    android:id="@+id/quanxi1"
+    android:id="@+id/holographic_left"
     android:layout_width="400px"
     android:layout_height="400px"
     android:layout_centerInParent="true"
     android:src="@mipmap/pic_image01"
     />
+    <ImageView
+        android:id="@+id/choose1"
+        android:layout_width="450px"
+        android:layout_height="450px"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/pic_choose"
+        />
+
     <TextView
         android:id="@+id/text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/quanxi1"
+        android:layout_below="@+id/holographic_left"
         android:layout_centerHorizontal="true"
         android:textSize="45px"
         android:text="全息影像001"/>
@@ -46,17 +54,26 @@
             android:src="@mipmap/bg_image"
             />
         <of.account.bq.utils.RoundImageView
-            android:id="@+id/quanxi2"
+            android:id="@+id/holographic_middle"
             android:layout_width="400px"
             android:layout_height="400px"
             android:layout_centerInParent="true"
             android:src="@mipmap/pic_image02"
             />
+
+        <ImageView
+            android:id="@+id/choose2"
+            android:layout_width="450px"
+            android:layout_height="450px"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            android:src="@mipmap/pic_choose"
+            />
         <TextView
             android:id="@+id/text2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/quanxi2"
+            android:layout_below="@+id/holographic_middle"
             android:layout_centerHorizontal="true"
             android:textSize="45px"
             android:text="全息影像002"/>
@@ -74,17 +91,25 @@
             android:src="@mipmap/bg_image"
             />
         <of.account.bq.utils.RoundImageView
-            android:id="@+id/quanxi3"
+            android:id="@+id/holographic_right"
             android:layout_width="400px"
             android:layout_height="400px"
             android:layout_centerInParent="true"
             android:src="@mipmap/pic_image03"
             />
+        <ImageView
+            android:id="@+id/choose3"
+            android:layout_width="450px"
+            android:layout_height="450px"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            android:src="@mipmap/pic_choose"
+            />
         <TextView
             android:id="@+id/text3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/quanxi3"
+            android:layout_below="@+id/holographic_right"
             android:layout_centerHorizontal="true"
             android:textSize="45px"
             android:text="预购形象"/>

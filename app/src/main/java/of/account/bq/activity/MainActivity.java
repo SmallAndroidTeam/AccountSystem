@@ -38,11 +38,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     public Fragment fingerPrint;
     public static Fragment fragmentreplace;
+    public static Fragment holoreplace;
     private Fragment seatFragment;
-    private Fragment holographicFragment;
+    public static Fragment holographicFragment;
     private ImageView bgmenu;
     public static DataOperator dataOperator;
     public static boolean flag = false;
+    public static boolean flag_holo = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,9 +104,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         initTextViewColor();
         switch (v.getId()) {
             case R.id.tv_fingerprint:
-                if (fragmentreplace != null) {
-                    fragmentTransaction.hide(fragmentreplace);
-                }
                 setTextViewAlphaChange(fingerprint);
                 fingerprint.setTextColor(getResources().getColor(R.color.textSelect));
                 fingerprintRelativeLayout.setVisibility(View.VISIBLE);
@@ -126,9 +125,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 break;
 
             case R.id.tv_seat:
-                if (fragmentreplace != null) {
-                    fragmentTransaction.hide(fragmentreplace);
-                }
                 setTextViewAlphaChange(seat);
                 seat.setTextColor(getResources().getColor(R.color.textSelect));
                 holographicRelativeLayout.setVisibility(View.INVISIBLE);
@@ -145,27 +141,27 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 }
                 break;
             case R.id.tv_holographic:
-                if (fragmentreplace != null) {
-                    fragmentTransaction.hide(fragmentreplace);
-                }
                 setTextViewAlphaChange(holographic);
                 holographic.setTextColor(getResources().getColor(R.color.textSelect));
                 holographicRelativeLayout.setVisibility(View.VISIBLE);
                 fingerprintRelativeLayout.setVisibility(View.INVISIBLE);
                 seatRelativeLayout.setVisibility(View.INVISIBLE);
                 returnRelativeLayout.setVisibility(View.INVISIBLE);
-                if (holographicFragment == null) {
-                    holographicFragment = new HolographicFragment();
-                    fragmentTransaction.add(R.id.mainFragment, holographicFragment);
+                if (holoreplace == null) {
+                    holoreplace = new HolographicFragment();
+                    fragmentTransaction
+                            .add(R.id.mainFragment, holoreplace);
                 } else {
-                    fragmentTransaction.show(holographicFragment);
+                   // if (flag_holo) {
+                        fragmentTransaction.show(holoreplace);
+//                    } else {
+//                        fragmentTransaction.show(holographicFragment);
+//                    }
+
                 }
 
                 break;
             case R.id.tv_return:
-                if (fragmentreplace != null) {
-                    fragmentTransaction.hide(fragmentreplace);
-                }
                 setTextViewAlphaChange(returnTv);
                 returnTv.setTextColor(getResources().getColor(R.color.textSelect));
                 holographicRelativeLayout.setVisibility(View.INVISIBLE);
@@ -191,7 +187,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         if (holographicFragment != null) {
             fragmentTransaction.hide(holographicFragment);
         }
-
+        if (fragmentreplace != null) {
+            fragmentTransaction.hide(fragmentreplace);
+        }
+        if (holoreplace != null) {
+            fragmentTransaction.hide(holoreplace);
+        }
     }
 
     private void initTextViewColor() {

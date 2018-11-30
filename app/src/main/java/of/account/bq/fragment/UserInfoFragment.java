@@ -87,22 +87,27 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.delete:
                 getFragmentManager().popBackStack();
-                MainActivity.fragmentreplace = new DeleteUserInfoFragment();
+                MainActivity.fragmentreplace = new WhetherDeleteUserInfoFragment();
                 getFragmentManager()
                         .beginTransaction()
                         .addToBackStack(null)  //将当前fragment加入到返回栈中
                         .add(R.id.mainFragment, MainActivity.fragmentreplace).commit();
                 break;
             case R.id.relation:
-                correlation.setText("状态：已关联");
+
                 if (!MainActivity.dataOperator.CheckIsDataAlreadyInDBorNot(AssociateFingerSucceedFragment.s)) {
-                    PersonInfo personInfo = new PersonInfo();
-                    personInfo.setFace(AssociateFaceSucceedFragment.drawable);
-                    personInfo.setFingerId(AssociateFingerSucceedFragment.s);
-                    personInfo.setName(editname.getText().toString());
-                    MainActivity.dataOperator.add(personInfo);
-                    // Toast.makeText(getContext(), "指纹和脸部已经关联", Toast.LENGTH_LONG).show();
-                    OnlyOneToast.makeText(getContext(), "指纹和脸部已经关联");
+                    if (!MainActivity.dataOperator.CheckIsNameAlreadyInDB(editname.getText().toString())) {
+                        PersonInfo personInfo = new PersonInfo();
+                        personInfo.setFace(AssociateFaceSucceedFragment.drawable);
+                        personInfo.setFingerId(AssociateFingerSucceedFragment.s);
+                        personInfo.setName(editname.getText().toString());
+                        MainActivity.dataOperator.add(personInfo);
+                        correlation.setText("状态：已关联");
+                        // Toast.makeText(getContext(), "指纹和脸部已经关联", Toast.LENGTH_LONG).show();
+                        OnlyOneToast.makeText(getContext(), "指纹和脸部已经关联");
+                    }else {
+                        OnlyOneToast.makeText(getContext(), "已存在同名用户，请修改");
+                    }
                 } else {
                     // Toast.makeText(getContext(), "指纹和脸部已经关联", Toast.LENGTH_LONG).show();
                     OnlyOneToast.makeText(getContext(), "指纹和脸部已经关联");

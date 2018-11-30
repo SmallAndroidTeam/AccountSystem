@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/bg_right"
     android:orientation="horizontal">
 
     <RelativeLayout
@@ -19,31 +18,16 @@
             android:layout_width="300px"
             android:layout_height="550px"
             android:layout_centerInParent="true"
-            android:src="@mipmap/bg_add" />
+            android:src="@mipmap/noface" />
 
-        <ImageView
-            android:id="@+id/icon_add1"
-            android:layout_width="100px"
-            android:layout_height="100px"
-            android:layout_marginTop="150px"
-            android:layout_centerHorizontal="true"
-            android:src="@mipmap/icon_add" />
-        <ImageView
-            android:id="@+id/icon_arrow1"
-            android:layout_width="60px"
-            android:layout_height="60px"
-            android:layout_marginTop="380px"
-            android:layout_toRightOf="@id/icon_add1"
-            android:src="@mipmap/icon_arrow" />
         <TextView
             android:id="@+id/text1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:paddingTop="35px"
+            android:layout_marginTop="380px"
             android:textSize="45px"
-            android:layout_below="@id/icon_add1"
-            android:text="@string/add_fingerprint" />
+            android:text="新建用户" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="0px"

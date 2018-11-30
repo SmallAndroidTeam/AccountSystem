@@ -12,15 +12,23 @@
         android:src="@mipmap/fingerprint" />
 
     <TextView
-        android:id="@+id/add_succeed"
+        android:id="@+id/tv_buy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingTop="30px"
-        android:textSize="35px"
+        android:textSize="55px"
         android:layout_below="@id/add_succeed_icon"
-        android:maxLines="2"
         android:textColor="@color/white"
-        android:text="@string/start_fingerprint"/>
-
+        android:text="即将开启指纹支付"/>
+    <TextView
+        android:id="@+id/tv_prompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="30px"
+        android:textSize="40px"
+        android:layout_below="@id/tv_buy"
+        android:textColor="@color/white"
+        android:text="指纹支付即将开启，请将手指放置按钮上"/>
 </RelativeLayout>

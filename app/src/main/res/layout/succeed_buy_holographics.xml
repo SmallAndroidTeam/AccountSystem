@@ -18,14 +18,23 @@
         android:layout_marginTop="267px"
         />
     <TextView
-        android:id="@+id/add_succeed"
+        android:id="@+id/tv_buy_succeed"
         android:paddingTop="20px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="50px"
         android:layout_below="@id/add_succeed_icon"
-        android:maxLines="2"
         android:textColor="@color/white"
-        android:text="@string/associateface_succeed"/>
+        android:text="支付完成 敬请期待"/>
+    <TextView
+        android:id="@+id/tv_buy_prompt"
+        android:paddingTop="20px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="40px"
+        android:layout_below="@id/tv_buy_succeed"
+        android:textColor="@color/white"
+        android:text="预购的全息影像已支付完成 敬请期待"/>
 </RelativeLayout>

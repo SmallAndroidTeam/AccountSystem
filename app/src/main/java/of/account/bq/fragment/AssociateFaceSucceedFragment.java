@@ -44,7 +44,7 @@ public class AssociateFaceSucceedFragment extends Fragment {
     private void addto_DataBase() {
         path = "/storage/emulated/0/Pictures/facedemo2.png";
        // drawable = new BitmapDrawable(BitmapFactory.decodeFile(path));
-        drawable = getResources().getDrawable(R.mipmap.facedemo);
+        drawable = getResources().getDrawable(R.mipmap.facedemo2);
         //  MainActivity.dataOperator.add_face(drawable);
         name = "user000";
        // Toast.makeText(getContext(), "succeed added data to Database", Toast.LENGTH_LONG).show();
@@ -101,7 +101,7 @@ public class AssociateFaceSucceedFragment extends Fragment {
                     }
                 });
             }
-        }, duration);
+        }, 3000);
 
 
     }

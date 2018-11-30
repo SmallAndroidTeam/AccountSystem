@@ -20,7 +20,7 @@ import of.account.bq.R;
 import of.account.bq.activity.MainActivity;
 
 
-public class DeleteUserInfoFragment extends Fragment {
+public class WhetherDeleteUserInfoFragment extends Fragment {
     private TextView textView1;
     private TextView textView2;
     private TextView textView3;

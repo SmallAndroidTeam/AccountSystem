@@ -1,9 +1,16 @@
 package of.account.bq.fragment;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.os.RemoteException;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +23,14 @@ import android.widget.TextView;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import of.account.bq.AccountService;
 import of.account.bq.R;
 import of.account.bq.activity.MainActivity;
+import com.ofilm_emirror.dms.dmsserver.DmsServiceAidlInterface;
 
-
-public class AssociateFaceFragment extends Fragment {
+public class AssociateFaceFragment extends Fragment  {
     private TextView tv_face;
     private ImageView imageView;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -32,6 +39,16 @@ public class AssociateFaceFragment extends Fragment {
 
         return view;
     }
+
+
+
+    @Override
+    public void onDestroy() {
+
+        super.onDestroy();
+    }
+
+
 
     private void initViews(View view) {
         tv_face = view.findViewById(R.id.tv_face);
@@ -73,4 +90,5 @@ public class AssociateFaceFragment extends Fragment {
             }
         }, 2000);
     }
+
 }

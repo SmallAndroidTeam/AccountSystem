@@ -1,5 +1,6 @@
 package of.account.bq.fragment;
 
+import android.content.Intent;
 import android.graphics.Paint;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -29,15 +30,30 @@ public class WhetherAssociationFragment extends Fragment {
     private int duration = 0;
     private AnimationDrawable anim_start;
     private boolean clicked = false;
+    private Timer back;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.whether_start_association, container, false);
         initViews(view);
+         noResponse();
         return view;
     }
-
+    private void noResponse() {
+        back= new Timer();
+        back.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                getFragmentManager().popBackStack();
+                MainActivity.fragmentreplace = new FingerPrintEnteringFragment();
+                getFragmentManager()
+                        .beginTransaction()
+                        .addToBackStack(null)
+                        .add(R.id.mainFragment, MainActivity.fragmentreplace).commit();
+            }
+        },5000);
+    }
     private void initViews(View view) {
         textView1 = view.findViewById(R.id.whether_associate_face);
         textView2 = view.findViewById(R.id.sure_association);
@@ -54,7 +70,11 @@ public class WhetherAssociationFragment extends Fragment {
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                back.cancel();
                 if (!clicked) {
+                    Intent intent=new Intent("of.account.bq.send");
+                    intent.setPackage("thread.ofilm.com.testtrinity");
+                    getActivity().sendBroadcast(intent);
                     iv.setImageResource(R.drawable.associate_step2);
                     anim_start = (AnimationDrawable) iv.getDrawable();
                     anim_start.start();
@@ -63,6 +83,9 @@ public class WhetherAssociationFragment extends Fragment {
                         @Override
                         public void run() {
                             anim_start.stop();
+//                            Intent intent = new Intent();
+//                            intent.setAction("of.account.ba.add");
+//                            getActivity().sendBroadcast(intent);
 //                        Message msg = MainActivity.handler.obtainMessage();
 //                        MainActivity.handler.sendMessage(msg);
                             getFragmentManager().popBackStack();
@@ -80,6 +103,7 @@ public class WhetherAssociationFragment extends Fragment {
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                back.cancel();
                 getFragmentManager().popBackStack();
                 MainActivity.fragmentreplace = new FingerPrintEnteringFragment();
                 getFragmentManager()
