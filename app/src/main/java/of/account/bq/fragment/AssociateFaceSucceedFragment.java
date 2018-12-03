@@ -16,8 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import of.account.bq.R;
-import of.account.bq.toast.OnlyOneToast;
 import of.account.bq.activity.MainActivity;
+import of.account.bq.toast.OnlyOneToast;
 
 
 public class AssociateFaceSucceedFragment extends Fragment {

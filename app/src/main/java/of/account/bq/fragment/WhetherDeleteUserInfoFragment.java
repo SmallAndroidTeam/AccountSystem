@@ -83,13 +83,15 @@ public class WhetherDeleteUserInfoFragment extends Fragment {
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!clicked) {
                 getFragmentManager().popBackStack();
                 MainActivity.fragmentreplace = new UserInfoFragment();
                 getFragmentManager()
                         .beginTransaction()
                         .addToBackStack(null)  //将当前fragment加入到返回栈中
                         .add(R.id.mainFragment, MainActivity.fragmentreplace).commit();
-            }
+                clicked=true;
+            }}
         });
 
     }

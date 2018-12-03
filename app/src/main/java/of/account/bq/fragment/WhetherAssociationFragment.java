@@ -104,12 +104,15 @@ public class WhetherAssociationFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 back.cancel();
-                getFragmentManager().popBackStack();
-                MainActivity.fragmentreplace = new FingerPrintEnteringFragment();
-                getFragmentManager()
-                        .beginTransaction()
-                        .addToBackStack(null)
-                        .add(R.id.mainFragment, MainActivity.fragmentreplace).commit();
+                if (!clicked) {
+                    getFragmentManager().popBackStack();
+                    MainActivity.fragmentreplace = new FingerPrintEnteringFragment();
+                    getFragmentManager()
+                            .beginTransaction()
+                            .addToBackStack(null)
+                            .add(R.id.mainFragment, MainActivity.fragmentreplace).commit();
+                    clicked=true;
+                }
             }
         });
 

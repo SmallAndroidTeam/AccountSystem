@@ -272,6 +272,10 @@ public class FingerPrintEnteringFragment extends Fragment {
 
     }
      private  void ShowCurrentUser(){
+         if(SHOW_CURRENT_USER>users.size())
+         {
+             SHOW_CURRENT_USER=1;
+         }
          if(SHOW_CURRENT_USER==1)
          {
              rectangle1.setVisibility(View.VISIBLE);
@@ -289,6 +293,7 @@ public class FingerPrintEnteringFragment extends Fragment {
              rectangle2.setVisibility(View.INVISIBLE);
              rectangle3.setVisibility(View.VISIBLE);
          }
+
      }
     private void gotoUserInfo(int i) {
         personInfo = users.get(i);

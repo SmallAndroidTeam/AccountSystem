@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -97,15 +98,20 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
 
                 if (!MainActivity.dataOperator.CheckIsDataAlreadyInDBorNot(AssociateFingerSucceedFragment.s)) {
                     if (!MainActivity.dataOperator.CheckIsNameAlreadyInDB(editname.getText().toString())) {
-                        PersonInfo personInfo = new PersonInfo();
-                        personInfo.setFace(AssociateFaceSucceedFragment.drawable);
-                        personInfo.setFingerId(AssociateFingerSucceedFragment.s);
-                        personInfo.setName(editname.getText().toString());
-                        MainActivity.dataOperator.add(personInfo);
-                        correlation.setText("状态：已关联");
-                        // Toast.makeText(getContext(), "指纹和脸部已经关联", Toast.LENGTH_LONG).show();
-                        OnlyOneToast.makeText(getContext(), "指纹和脸部已经关联");
-                    }else {
+                        if (!editname.getText().toString().contentEquals("")) {
+                            PersonInfo personInfo = new PersonInfo();
+                            personInfo.setFace(AssociateFaceSucceedFragment.drawable);
+                            personInfo.setFingerId(AssociateFingerSucceedFragment.s);
+                            personInfo.setName(editname.getText().toString());
+                            MainActivity.dataOperator.add(personInfo);
+                            correlation.setText("状态：已关联");
+                            // Toast.makeText(getContext(), "指纹和脸部已经关联", Toast.LENGTH_LONG).show();
+                            OnlyOneToast.makeText(getContext(), " 指纹和脸部已经关联");
+                        } else {
+                            Log.i("a", "aaaaaa");
+                            OnlyOneToast.makeText(getContext(), "姓名不能为空");
+                        }
+                    } else {
                         OnlyOneToast.makeText(getContext(), "已存在同名用户，请修改");
                     }
                 } else {
@@ -151,11 +157,11 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
         bottomAnim.setDuration(1500);
         //同时执行控件平移和alpha渐变动画
         bottomAnim.play(tranName).with(tranFingerprint).with(tranFace).with(tranCorrelation).with(tranBack1_X)
-                  .with(traneditname).with(tranBack1_Y).with(tranBack2_X).with(tranBack2_Y).with(icon1_X)
-                  .with(icon1_Y).with(icon2_X).with(icon2_Y).with(arrow_X).with(arrow_Y)
-                  .with(alphaLoName).with(alphaFingerprint).with(alphaFace)
-                  .with(alphaCorrelation).with(alphaBack1).with(alphaBack2).with(alphaRelation)
-                  .with(alphaBack).with(alphadelete);
+                .with(traneditname).with(tranBack1_Y).with(tranBack2_X).with(tranBack2_Y).with(icon1_X)
+                .with(icon1_Y).with(icon2_X).with(icon2_Y).with(arrow_X).with(arrow_Y)
+                .with(alphaLoName).with(alphaFingerprint).with(alphaFace)
+                .with(alphaCorrelation).with(alphaBack1).with(alphaBack2).with(alphaRelation)
+                .with(alphaBack).with(alphadelete);
         bottomAnim.start();
 
 
