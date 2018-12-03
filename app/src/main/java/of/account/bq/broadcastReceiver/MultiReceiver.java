@@ -3,9 +3,8 @@ package of.account.bq.broadcastReceiver;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
-import of.account.bq.AccountService;
+import of.account.bq.service.AccountService;
 
 public class MultiReceiver extends BroadcastReceiver {
     public final static String FINGERPRINT_START="ofilm.intent.action.FINGERPRINT_EVENT";

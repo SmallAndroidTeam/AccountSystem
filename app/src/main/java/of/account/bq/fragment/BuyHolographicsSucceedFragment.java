@@ -14,10 +14,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.Random;
-
 import of.account.bq.R;
-import of.account.bq.Toast.OnlyOneToast;
 import of.account.bq.activity.MainActivity;
 
 public class BuyHolographicsSucceedFragment extends Fragment {

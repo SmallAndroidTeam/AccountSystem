@@ -67,7 +67,7 @@ public class BuyHolographicPromptFragment extends Fragment {
                                 .beginTransaction()
                                 .hide(MainActivity.holoreplace)
                                 .commit();
-                        MainActivity.holoreplace = new FingerIsAssociatingFragment();
+                        MainActivity.holoreplace = new FingerIsCheckingFragment();
                         getFragmentManager()
                                 .beginTransaction()
                                 .add(R.id.mainFragment, MainActivity.holoreplace).commit();

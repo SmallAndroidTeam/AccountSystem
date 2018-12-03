@@ -13,9 +13,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import of.account.bq.Bean.PersonInfo;
+import of.account.bq.bean.PersonInfo;
 import of.account.bq.R;
-import of.account.bq.Toast.OnlyOneToast;
+import of.account.bq.toast.OnlyOneToast;
 import of.account.bq.activity.MainActivity;
 
 

@@ -8,32 +8,25 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin">
 
-    <!--<ImageView-->
-        <!--android:id="@+id/anim"-->
-        <!--android:paddingTop="10dp"-->
-        <!--android:src="@drawable/associate_step1"-->
-        <!--android:layout_width="110dp"-->
-        <!--android:layout_height="32dp"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--/>-->
 
-    <ImageView
-        android:id="@+id/im"
-        android:layout_marginTop="70px"
-        android:layout_width="310px"
-        android:layout_height="310px"
-        android:layout_centerHorizontal="true"
-        android:src="@mipmap/facephoto"
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/iv_facegif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="415px"
+        android:src="@drawable/facegif"
         />
     <TextView
         android:id="@+id/tv_face"
         android:paddingTop="10dp"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:textSize="55px"
         android:textColor="@color/colorPrimary"
-        android:layout_below="@id/im"
+        android:layout_marginTop="500px"
+        android:layout_marginLeft="425px"
         android:maxLines="2"
         android:text="@string/associate_face"/>
 

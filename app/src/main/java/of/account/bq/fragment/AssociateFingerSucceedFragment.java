@@ -18,7 +18,7 @@ import android.widget.TextView;
 import java.util.Random;
 
 import of.account.bq.R;
-import of.account.bq.Toast.OnlyOneToast;
+import of.account.bq.toast.OnlyOneToast;
 import of.account.bq.activity.MainActivity;
 
 public class AssociateFingerSucceedFragment extends Fragment {

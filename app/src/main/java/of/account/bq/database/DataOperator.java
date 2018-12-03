@@ -1,6 +1,5 @@
 package of.account.bq.database;
 
-import android.app.Person;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -19,7 +18,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import of.account.bq.Bean.PersonInfo;
+import of.account.bq.bean.PersonInfo;
 
 
 public class DataOperator {

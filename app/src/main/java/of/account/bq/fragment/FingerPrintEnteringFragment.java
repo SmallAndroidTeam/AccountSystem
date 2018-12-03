@@ -8,24 +8,20 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.security.auth.login.LoginException;
-
-import of.account.bq.Bean.PersonInfo;
+import of.account.bq.bean.PersonInfo;
 import of.account.bq.R;
-import of.account.bq.Toast.OnlyOneToast;
+import of.account.bq.toast.OnlyOneToast;
 import of.account.bq.activity.MainActivity;
 import of.account.bq.particles.ParticleSmasher;
 import of.account.bq.particles.SmashAnimator;
@@ -41,9 +37,13 @@ public class FingerPrintEnteringFragment extends Fragment {
     private TextView text3;
     private ImageView back4;
     private TextView text4;
-    RelativeLayout relativeLayout1;
-    RelativeLayout relativeLayout2;
-    RelativeLayout relativeLayout3;
+    private ImageView rectangle1;
+    private ImageView rectangle2;
+    private ImageView rectangle3;
+    private RelativeLayout relativeLayout1;
+    private RelativeLayout relativeLayout2;
+    private RelativeLayout relativeLayout3;
+    public static int SHOW_CURRENT_USER=1;
     private ParticleSmasher mSmasher;
     List<PersonInfo> users = new ArrayList<PersonInfo>();
     PersonInfo personInfo;
@@ -55,6 +55,7 @@ public class FingerPrintEnteringFragment extends Fragment {
         initViews(view);
         initViewsClick();
         initAnims();
+        ShowCurrentUser();
         return view;
     }
 
@@ -67,6 +68,9 @@ public class FingerPrintEnteringFragment extends Fragment {
         text3 = view.findViewById(R.id.text3);
         back4 = view.findViewById(R.id.back4);
         text4 = view.findViewById(R.id.text4);
+        rectangle1 = view.findViewById(R.id.rectangle1);
+        rectangle2 = view.findViewById(R.id.rectangle2);
+        rectangle3 = view.findViewById(R.id.rectangle3);
         relativeLayout1 = view.findViewById(R.id.first_user);
         relativeLayout2 = view.findViewById(R.id.second_user);
         relativeLayout3 = view.findViewById(R.id.third_user);
@@ -115,6 +119,7 @@ public class FingerPrintEnteringFragment extends Fragment {
                 if (users.size() < 3) {
                     text1.setVisibility(View.GONE);
                     back1.setVisibility(View.GONE);
+
                     mSmasher.with(back1)
                             .setStyle(SmashAnimator.STYLE_FLOAT_LEFT)
                             .setHorizontalMultiple(2)
@@ -155,6 +160,7 @@ public class FingerPrintEnteringFragment extends Fragment {
                 public void onClick(View view) {
                     text2.setVisibility(View.GONE);
                     back2.setVisibility(View.GONE);
+                    rectangle1.setVisibility(View.GONE);
                     mSmasher.with(back2)
                             .setStyle(SmashAnimator.STYLE_FLOAT_TOP)
                             .setHorizontalMultiple(2)
@@ -177,6 +183,14 @@ public class FingerPrintEnteringFragment extends Fragment {
                             .start();
                 }
             });
+            LongClickUtils.setLongClick(new Handler(), back2, 3000, new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    SHOW_CURRENT_USER=1;
+                    ShowCurrentUser();
+                    return true;
+                }
+            });
         }
         if (users.size() >= 2) {
             back3.setOnClickListener(new View.OnClickListener() {
@@ -184,6 +198,7 @@ public class FingerPrintEnteringFragment extends Fragment {
                 public void onClick(View view) {
                     text3.setVisibility(View.GONE);
                     back3.setVisibility(View.GONE);
+                    rectangle2.setVisibility(View.GONE);
                     mSmasher.with(back3)
                             .setStyle(SmashAnimator.STYLE_FLOAT_BOTTOM)
                             .setHorizontalMultiple(2)
@@ -206,27 +221,11 @@ public class FingerPrintEnteringFragment extends Fragment {
                             .start();
                 }
             });
-//            back3.setOnLongClickListener(new View.OnLongClickListener() {
-//                @Override
-//                public boolean onLongClick(View view) {
-//                    Drawable drawable = back2.getDrawable();
-//                    String temp = text2.getText().toString();
-//                    back2.setImageDrawable(back3.getDrawable());
-//                    text2.setText(text3.getText());
-//                    back3.setImageDrawable(drawable);
-//                    text3.setText(temp);
-//                    return true;
-//                }
-//            });
             LongClickUtils.setLongClick(new Handler(), back3, 3000, new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    Drawable drawable = back2.getDrawable();
-                    String temp = text2.getText().toString();
-                    back2.setImageDrawable(back3.getDrawable());
-                    text2.setText(text3.getText());
-                    back3.setImageDrawable(drawable);
-                    text3.setText(temp);
+                    SHOW_CURRENT_USER=2;
+                    ShowCurrentUser();
                     return true;
                 }
             });
@@ -237,6 +236,7 @@ public class FingerPrintEnteringFragment extends Fragment {
                 public void onClick(View view) {
                     text4.setVisibility(View.GONE);
                     back4.setVisibility(View.GONE);
+                    rectangle3.setVisibility(View.GONE);
                     mSmasher.with(back4)
                             .setStyle(SmashAnimator.STYLE_FLOAT_RIGHT)
                             .setHorizontalMultiple(2)
@@ -259,33 +259,37 @@ public class FingerPrintEnteringFragment extends Fragment {
                             .start();
                 }
             });
-//            back4.setOnLongClickListener(new View.OnLongClickListener() {
-//                @Override
-//                public boolean onLongClick(View view) {
-//                    Drawable drawable = back2.getDrawable();
-//                    String temp = text2.getText().toString();
-//                    back2.setImageDrawable(back4.getDrawable());
-//                    text2.setText(text4.getText());
-//                    back4.setImageDrawable(drawable);
-//                    text4.setText(temp);
-//                    return true;
-//                }
-//            });
+
             LongClickUtils.setLongClick(new Handler(), back4, 3000, new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    Drawable drawable = back2.getDrawable();
-                    String temp = text2.getText().toString();
-                    back2.setImageDrawable(back4.getDrawable());
-                    text2.setText(text4.getText());
-                    back4.setImageDrawable(drawable);
-                    text4.setText(temp);
+                    SHOW_CURRENT_USER=3;
+                    ShowCurrentUser();
                     return true;
                 }
             });
         }
-    }
 
+    }
+     private  void ShowCurrentUser(){
+         if(SHOW_CURRENT_USER==1)
+         {
+             rectangle1.setVisibility(View.VISIBLE);
+             rectangle2.setVisibility(View.INVISIBLE);
+             rectangle3.setVisibility(View.INVISIBLE);
+         }
+         else if(SHOW_CURRENT_USER==2)
+         {
+             rectangle1.setVisibility(View.INVISIBLE);
+             rectangle2.setVisibility(View.VISIBLE);
+             rectangle3.setVisibility(View.INVISIBLE);
+         }
+         else  if(SHOW_CURRENT_USER==3){
+             rectangle1.setVisibility(View.INVISIBLE);
+             rectangle2.setVisibility(View.INVISIBLE);
+             rectangle3.setVisibility(View.VISIBLE);
+         }
+     }
     private void gotoUserInfo(int i) {
         personInfo = users.get(i);
         AssociateFingerSucceedFragment.s = personInfo.getFingerId();
@@ -330,6 +334,13 @@ public class FingerPrintEnteringFragment extends Fragment {
         ObjectAnimator tranBack4_X = ObjectAnimator.ofFloat(back4, "scaleX", 0.5f, 1f);
         ObjectAnimator tranBack4_Y = ObjectAnimator.ofFloat(back4, "scaleY", 0.5f, 1f);
 
+        ObjectAnimator tran_rectangle1_X = ObjectAnimator.ofFloat(rectangle1, "scaleX", 0.5f, 1f);
+        ObjectAnimator tran_rectangle1_Y = ObjectAnimator.ofFloat(rectangle1, "scaleY", 0.5f, 1f);
+        ObjectAnimator tran_rectangle2_X = ObjectAnimator.ofFloat(rectangle2, "scaleX", 0.5f, 1f);
+        ObjectAnimator tran_rectangle2_Y = ObjectAnimator.ofFloat(rectangle2, "scaleY", 0.5f, 1f);
+        ObjectAnimator tran_rectangle3_X = ObjectAnimator.ofFloat(rectangle3, "scaleX", 0.5f, 1f);
+        ObjectAnimator tran_rectangle3_Y = ObjectAnimator.ofFloat(rectangle3, "scaleY", 0.5f, 1f);
+
         ObjectAnimator alphaBack1 = ObjectAnimator.ofFloat(back1, "alpha", 0, 1f);
         ObjectAnimator alphaBack2 = ObjectAnimator.ofFloat(back2, "alpha", 0, 1f);
         ObjectAnimator alphaBack3 = ObjectAnimator.ofFloat(back3, "alpha", 0, 1f);
@@ -339,6 +350,8 @@ public class FingerPrintEnteringFragment extends Fragment {
         //同时执行控件平移和alpha渐变动画
         bottomAnim.play(tranBack1_X).with(tranBack1_Y).with(tranBack2_X).with(tranBack2_Y).with(tranBack3_X)
                 .with(tranBack3_Y).with(tranBack4_X).with(tranBack4_Y).with(alphaBack1)
+                .with(tran_rectangle1_X).with(tran_rectangle1_Y).with(tran_rectangle2_X)
+                .with(tran_rectangle2_Y).with(tran_rectangle3_X).with(tran_rectangle3_Y)
                 .with(alphaBack2).with(alphaBack3).with(alphaBack4);
         bottomAnim.start();
 

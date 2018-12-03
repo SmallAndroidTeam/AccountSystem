@@ -8,7 +8,7 @@
         android:layout_width="300px"
         android:layout_height="300px"
         android:layout_centerInParent="true"
-        android:src="@mipmap/face_add_succeed" />
+        android:src="@mipmap/buy_succeed" />
     <ImageView
         android:id="@+id/anim"
         android:src="@drawable/finger_true"

@@ -43,7 +43,13 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:src="@mipmap/noface" />
-
+        <ImageView
+            android:id="@+id/rectangle1"
+            android:layout_width="370px"
+            android:layout_height="600px"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/back_rectangle" />
         <TextView
             android:id="@+id/text2"
             android:layout_width="match_parent"
@@ -69,6 +75,14 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:src="@mipmap/noface" />
+        <ImageView
+            android:id="@+id/rectangle2"
+            android:layout_width="370px"
+            android:layout_height="600px"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="invisible"
+            android:src="@mipmap/back_rectangle" />
         <TextView
             android:id="@+id/text3"
             android:layout_width="match_parent"
@@ -94,6 +108,14 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:src="@mipmap/noface" />
+        <ImageView
+            android:id="@+id/rectangle3"
+            android:layout_width="370px"
+            android:layout_height="600px"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="invisible"
+            android:src="@mipmap/back_rectangle" />
 
         <TextView
             android:id="@+id/text4"

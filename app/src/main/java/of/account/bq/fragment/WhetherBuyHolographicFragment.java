@@ -71,7 +71,7 @@ public class WhetherBuyHolographicFragment extends Fragment {
         iv_buy_anim.setImageResource(R.drawable.associate_step1);
         anim_start_buy = (AnimationDrawable) iv_buy_anim.getDrawable();
         iv_quxiao_anim = (ImageView) view.findViewById(R.id.anim2);
-        iv_quxiao_anim.setImageResource(R.drawable.associate_step1);
+        iv_quxiao_anim.setImageResource(R.drawable.cancel_step1);
         anim_start_quxiao = (AnimationDrawable) iv_quxiao_anim.getDrawable();
         holographic_left.setAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.scale_bigger));
         ring_left.setAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.scale_bigger));
@@ -112,7 +112,7 @@ public class WhetherBuyHolographicFragment extends Fragment {
             public void onClick(View view) {
               //  back.cancel();
                 if (!clicked) {
-                    iv_quxiao_anim.setImageResource(R.drawable.associate_step2);
+                    iv_quxiao_anim.setImageResource(R.drawable.cancel_step2);
                     anim_start_quxiao = (AnimationDrawable) iv_quxiao_anim.getDrawable();
                     anim_start_quxiao.start();
                     Timer timer = new Timer();

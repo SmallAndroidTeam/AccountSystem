@@ -30,6 +30,6 @@
     <item android:drawable="@drawable/icon_fingerprint21" android:duration="100"></item>
     <item android:drawable="@drawable/icon_fingerprint22" android:duration="100"></item>
     <item android:drawable="@drawable/icon_fingerprint23" android:duration="100"></item>
-    <item android:drawable="@drawable/icon_fingerprint24" android:duration="100"></item>
+    <item android:drawable="@drawable/icon_fingerprint24" android:duration="1000"></item>
 
 </animation-list>

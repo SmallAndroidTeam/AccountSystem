@@ -37,7 +37,7 @@
         </receiver>
 
         <service
-            android:name=".AccountService"
+            android:name=".service.AccountService"
             android:enabled="true"
             android:exported="true"></service>
     </application>

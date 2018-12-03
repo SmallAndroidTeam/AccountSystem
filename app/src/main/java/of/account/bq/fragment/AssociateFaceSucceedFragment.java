@@ -1,8 +1,6 @@
 package of.account.bq.fragment;
 
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import of.account.bq.R;
-import of.account.bq.Toast.OnlyOneToast;
+import of.account.bq.toast.OnlyOneToast;
 import of.account.bq.activity.MainActivity;
 
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    根标签为animation-list，其中oneshot代表着是否只展示一遍，设置为false会循环播放动画
+    根标签下，通过item标签对动画中的每一个图片进行声明
+    android:duration 表示展示所用的该图片的时间长度
+ -->
+<animation-list
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true">
+    <item android:drawable="@drawable/btn1_bg14" android:duration="50"></item>
+    <item android:drawable="@drawable/btn1_bg15" android:duration="50"></item>
+    <item android:drawable="@drawable/btn1_bg16" android:duration="50"></item>
+    <item android:drawable="@drawable/btn1_bg17" android:duration="50"></item>
+    <item android:drawable="@drawable/btn1_bg18" android:duration="50"></item>
+    <item android:drawable="@drawable/btn1_bg19" android:duration="50"></item>
+    <item android:drawable="@drawable/btn1_bg20" android:duration="50"></item>
+    <item android:drawable="@drawable/btn1_bg21" android:duration="50"></item>
+    <item android:drawable="@drawable/btn1_bg22" android:duration="50"></item>
+    <item android:drawable="@drawable/btn1_bg23" android:duration="50"></item>
+    <item android:drawable="@drawable/btn1_bg24" android:duration="50"></item>
+    <item android:drawable="@drawable/btn1_bg25" android:duration="50"></item>
+    <item android:drawable="@drawable/btn1_bg26" android:duration="50"></item>
+    <item android:drawable="@drawable/btn1_bg28" android:duration="50"></item>
+</animation-list>
