@@ -15,8 +15,7 @@ import java.util.TimerTask;
 
 import of.account.bq.R;
 import of.account.bq.activity.MainActivity;
-import pl.droidsonroids.gif.GifDrawable;
-import pl.droidsonroids.gif.GifImageView;
+import of.account.bq.utils.GifImageView;
 
 
 public class FingerIsCheckingFragment extends Fragment {
@@ -39,6 +38,27 @@ public class FingerIsCheckingFragment extends Fragment {
     private void initView(View view) {
         gifImageView = view.findViewById(R.id.iv_fingering);
         gifImageView.setAlpha(0.55f);
+        gifImageView.setGifResource(R.mipmap.fingergif, new GifImageView.OnPlayListener() {
+            @Override
+            public void onPlayStart() {
+            }
+
+            @Override
+            public void onPlaying(@FloatRange(from = 0f, to = 1.0f) float percent) {
+            }
+
+            @Override
+            public void onPlayPause(boolean pauseSuccess) {
+            }
+
+            @Override
+            public void onPlayRestart() {
+            }
+
+            @Override
+            public void onPlayEnd() {
+            }
+        });
 //2. 设置给GifImageView控件
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {

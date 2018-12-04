@@ -101,7 +101,7 @@
         android:layout_below="@id/whether_buy"
         android:textColor="@color/white"
         android:layout_marginLeft="755px"
-        android:textSize="50px"
+        android:textSize="45px"
         android:text="取消"
         />
     </RelativeLayout>

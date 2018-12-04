@@ -7,12 +7,13 @@
 >
 
 
-    <pl.droidsonroids.gif.GifImageView
+    <of.account.bq.utils.GifImageView
         android:id="@+id/iv_fingering"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="415px"
+        android:layout_marginLeft="425px"
         android:src="@drawable/fingergif"
+        app:play_count="1"
         />
 
 </RelativeLayout>

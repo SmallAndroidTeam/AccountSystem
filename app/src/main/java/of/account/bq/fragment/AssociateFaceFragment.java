@@ -1,6 +1,7 @@
 package of.account.bq.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.FloatRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -18,12 +18,12 @@ import java.util.TimerTask;
 
 import of.account.bq.R;
 import of.account.bq.activity.MainActivity;
-import pl.droidsonroids.gif.GifDrawable;
-import pl.droidsonroids.gif.GifImageView;
+import of.account.bq.utils.GifImageView;
 
-public class AssociateFaceFragment extends Fragment  {
+public class AssociateFaceFragment extends Fragment {
     private TextView tv_face;
-    private  GifImageView gifImageView;
+    private GifImageView gifImageView;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,7 +35,6 @@ public class AssociateFaceFragment extends Fragment  {
     }
 
 
-
     @Override
     public void onDestroy() {
 
@@ -43,12 +42,31 @@ public class AssociateFaceFragment extends Fragment  {
     }
 
 
-
     private void initViews(View view) {
         tv_face = view.findViewById(R.id.tv_face);
         gifImageView = view.findViewById(R.id.iv_facegif);
-        gifImageView.setAlpha(0.55f);
+        gifImageView.setAlpha(0.50f);
+        gifImageView.setGifResource(R.drawable.facegif, new GifImageView.OnPlayListener() {
+            @Override
+            public void onPlayStart() {
+            }
 
+            @Override
+            public void onPlaying(@FloatRange(from = 0f, to = 1.0f) float percent) {
+            }
+
+            @Override
+            public void onPlayPause(boolean pauseSuccess) {
+            }
+
+            @Override
+            public void onPlayRestart() {
+            }
+
+            @Override
+            public void onPlayEnd() {
+            }
+        });
         tv_face.setAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.alpha));
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
@@ -80,7 +98,7 @@ public class AssociateFaceFragment extends Fragment  {
                     }
                 });
             }
-        }, 3000);
+        }, 1500);
     }
 
 }

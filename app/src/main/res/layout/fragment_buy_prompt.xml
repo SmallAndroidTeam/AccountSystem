@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingTop="30px"
-        android:textSize="40px"
+        android:textSize="45px"
         android:layout_below="@id/tv_buy"
         android:textColor="@color/white"
         android:text="指纹支付即将开启，请将手指放置按钮上"/>

@@ -47,7 +47,7 @@
         android:layout_centerInParent="true"
         android:gravity="center"
         android:textColor="@color/white"
-        android:textSize="40px"
+        android:textSize="45px"
         android:text="取消"
         />
 </RelativeLayout>

@@ -168,6 +168,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 fingerprintRelativeLayout.setVisibility(View.INVISIBLE);
                 seatRelativeLayout.setVisibility(View.INVISIBLE);
                 returnRelativeLayout.setVisibility(View.VISIBLE);
+                finish();
                 break;
 
             default:
@@ -202,18 +203,4 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         returnTv.setTextColor(getResources().getColor(R.color.textNoSelect));
     }
 
-//    @SuppressLint("HandlerLeak")
-//    public static Handler handler = new Handler() {
-//
-//        //在主线程中处理从子线程发送过来的消息
-//        @Override
-//        public void handleMessage(Message msg) {
-//            Log.i("s", "ssssssssssssssssss ");
-//        }
-//    };
-//   public static SpannableString getHighLightKeyWord(int color,String text,int size){
-//        SpannableString s=new SpannableString(text);
-//        s.setSpan(color,0,size, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//        return s;
-//   }
 }
