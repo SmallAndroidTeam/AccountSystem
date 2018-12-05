@@ -20,6 +20,7 @@ import java.util.TimerTask;
 
 import of.account.bq.R;
 import of.account.bq.activity.MainActivity;
+import of.account.bq.service.AccountService;
 
 
 public class WhetherAssociationFragment extends Fragment {
@@ -29,7 +30,7 @@ public class WhetherAssociationFragment extends Fragment {
     private ImageView iv;
     private int duration = 0;
     private AnimationDrawable anim_start;
-    private boolean clicked = false;
+    private boolean clicked = false;//防止确认和取消按钮都被点击
     private Timer back;
 
     @Nullable
@@ -45,13 +46,16 @@ public class WhetherAssociationFragment extends Fragment {
         back.schedule(new TimerTask() {
             @Override
             public void run() {
+                if (!clicked) {
+                MainActivity.enable_jump=true;
                 getFragmentManager().popBackStack();
                 MainActivity.fragmentreplace = new FingerPrintEnteringFragment();
                 getFragmentManager()
                         .beginTransaction()
                         .addToBackStack(null)
                         .add(R.id.mainFragment, MainActivity.fragmentreplace).commit();
-            }
+                    clicked=true;
+            }}
         },5000);
     }
     private void initViews(View view) {
@@ -59,6 +63,7 @@ public class WhetherAssociationFragment extends Fragment {
         textView2 = view.findViewById(R.id.sure_association);
         //   mSquareProgress = (SquareProgress) findViewById(R.id.sp);
         textView3 = view.findViewById(R.id.quxiao);
+        MainActivity.enable_jump=false;
         iv = (ImageView) view.findViewById(R.id.anim);
         iv.setImageResource(R.drawable.associate_step1);
         anim_start = (AnimationDrawable) iv.getDrawable();
@@ -72,9 +77,12 @@ public class WhetherAssociationFragment extends Fragment {
             public void onClick(View view) {
                 back.cancel();
                 if (!clicked) {
-                    Intent intent=new Intent("of.account.bq.send");
-                    intent.setPackage("thread.ofilm.com.testtrinity");
-                    getActivity().sendBroadcast(intent);
+//                    Intent intent=new Intent("of.account.bq.send");
+//                    intent.setPackage("thread.ofilm.com.testtrinity");
+//                    getActivity().sendBroadcast(intent);
+                    Intent intent=new Intent(getActivity(), AccountService.class);
+                            intent.setAction(AccountService.GET_FIGERPRINT_STATUS);
+                            getActivity().startService(intent);
                     iv.setImageResource(R.drawable.associate_step2);
                     anim_start = (AnimationDrawable) iv.getDrawable();
                     anim_start.start();
@@ -83,11 +91,8 @@ public class WhetherAssociationFragment extends Fragment {
                         @Override
                         public void run() {
                             anim_start.stop();
-//                            Intent intent = new Intent();
-//                            intent.setAction("of.account.ba.add");
-//                            getActivity().sendBroadcast(intent);
-//                        Message msg = MainActivity.handler.obtainMessage();
-//                        MainActivity.handler.sendMessage(msg);
+
+                            MainActivity.enable_jump=true;
                             getFragmentManager().popBackStack();
                             MainActivity.fragmentreplace = new StartAssociateFingerPromptFragment();
                             getFragmentManager()
@@ -97,6 +102,7 @@ public class WhetherAssociationFragment extends Fragment {
                         }
                     }, 700);
                     clicked = true;
+
                 }
             }
         });
@@ -105,6 +111,7 @@ public class WhetherAssociationFragment extends Fragment {
             public void onClick(View view) {
                 back.cancel();
                 if (!clicked) {
+                    MainActivity.enable_jump=true;
                     getFragmentManager().popBackStack();
                     MainActivity.fragmentreplace = new FingerPrintEnteringFragment();
                     getFragmentManager()

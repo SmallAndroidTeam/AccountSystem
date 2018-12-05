@@ -45,6 +45,7 @@ public class AssociateFaceFragment extends Fragment {
     private void initViews(View view) {
         tv_face = view.findViewById(R.id.tv_face);
         gifImageView = view.findViewById(R.id.iv_facegif);
+        MainActivity.enable_jump=false;
         gifImageView.setAlpha(0.50f);
         gifImageView.setGifResource(R.drawable.facegif, new GifImageView.OnPlayListener() {
             @Override
@@ -84,6 +85,7 @@ public class AssociateFaceFragment extends Fragment {
                     @Override
                     public void onAnimationEnd(Animation animation) {
                         tv_face.setVisibility(View.GONE);
+                        MainActivity.enable_jump=true;
                         getFragmentManager().popBackStack();
                         MainActivity.fragmentreplace = new AssociateFaceSucceedFragment();
                         getFragmentManager()

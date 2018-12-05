@@ -25,7 +25,7 @@ import of.account.bq.utils.FingerImageView;
 public class AssociateFingerFragment extends Fragment implements  AccountService.TransmissionData{
     private TextView tv_finger;
     private int process = 0;
-
+    private byte [] data;
     /**
      * 显示提示性动画的ImageView
      */
@@ -92,7 +92,7 @@ public class AssociateFingerFragment extends Fragment implements  AccountService
     }
 
     @Override
-    public void transmitData(int data) {
-
+    public void transmitData(byte[]data) {
+            this.data=data;
     }
 }

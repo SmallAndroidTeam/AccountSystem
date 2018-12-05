@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ public class HolographicFragment extends Fragment implements View.OnClickListene
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_holographic, container, false);
         initView(view);
+        Log.i("bbbb", "onCreateView: bbbbbbbbbbbb");
         return view;
     }
 
@@ -69,9 +71,11 @@ public class HolographicFragment extends Fragment implements View.OnClickListene
                 ring_middle.setVisibility(View.INVISIBLE);
                 ring_right.setVisibility(View.VISIBLE);
                 getFragmentManager()
-                        .beginTransaction().hide(MainActivity.holoreplace).commit();
+                        .beginTransaction()
+                        .hide(MainActivity.holoreplace)
+                        .commit();
                 MainActivity.holoreplace = new WhetherBuyHolographicFragment();
-             //   MainActivity.flag_holo=true;
+            //    MainActivity.flag_holo=true;
                 getFragmentManager()
                         .beginTransaction()
                    //     .hide(MainActivity.holoreplace)

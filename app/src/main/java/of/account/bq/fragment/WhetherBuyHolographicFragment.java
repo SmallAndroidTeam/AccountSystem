@@ -42,7 +42,7 @@ public class WhetherBuyHolographicFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.whether_buy_holographic, container, false);
         initViews(view);
-        // noResponse();
+         noResponse();
         return view;
     }
     private void noResponse() {
@@ -50,14 +50,22 @@ public class WhetherBuyHolographicFragment extends Fragment {
         back.schedule(new TimerTask() {
             @Override
             public void run() {
-                MainActivity.holoreplace = new HolographicFragment();
-                getFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.mainFragment, MainActivity.holoreplace).commit();
-            }
+                if (!clicked) {
+                    MainActivity.enable_jump=true;
+                    getFragmentManager()
+                            .beginTransaction()
+                            .hide(MainActivity.holoreplace).commit();
+                    MainActivity.holoreplace = new HolographicFragment();
+                    getFragmentManager()
+                            .beginTransaction()
+                            .addToBackStack(null)
+                            .add(R.id.mainFragment, MainActivity.holoreplace).commit();
+                    clicked=true;
+                }}
         },5000);
     }
     private void initViews(View view) {
+        MainActivity.enable_jump=false;
         bg_left = view.findViewById(R.id.bg_left);
         holographic_left= view.findViewById(R.id.holographic_left);
         ring_left= view.findViewById(R.id.ring_left);
@@ -93,7 +101,7 @@ public class WhetherBuyHolographicFragment extends Fragment {
                         @Override
                         public void run() {
                             anim_start_buy.stop();
-
+                            MainActivity.enable_jump=true;
                             getFragmentManager()
                                     .beginTransaction()
                                     .hide(MainActivity.holoreplace).commit();
@@ -112,6 +120,7 @@ public class WhetherBuyHolographicFragment extends Fragment {
             public void onClick(View view) {
               //  back.cancel();
                 if (!clicked) {
+                    MainActivity.enable_jump=true;
                     iv_quxiao_anim.setImageResource(R.drawable.cancel_step2);
                     anim_start_quxiao = (AnimationDrawable) iv_quxiao_anim.getDrawable();
                     anim_start_quxiao.start();

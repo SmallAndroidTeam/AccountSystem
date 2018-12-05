@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.transition.Fade;
 import android.transition.TransitionManager;
 import android.transition.TransitionSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -45,6 +46,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     public static DataOperator dataOperator;
     public static boolean flag = false;
     public static boolean flag_holo = false;
+    public static boolean enable_jump=true;  //用以在当前页面时禁止点击菜单栏按钮跳转
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         initView();
         initEvents();
         initShowFragment();
+        enable_jump=true;
         dataOperator = new DataOperator(MainActivity.this);
     }
 
@@ -93,6 +96,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         //设置图片动画
+        if(enable_jump){
         Fade fade = new Fade();
         fade.setDuration(500);
         TransitionSet transitionSet = new TransitionSet().addTransition(fade);
@@ -152,11 +156,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                     fragmentTransaction
                             .add(R.id.mainFragment, holoreplace);
                 } else {
-                   // if (flag_holo) {
+
+                 //   if (flag_holo) {
                         fragmentTransaction.show(holoreplace);
-//                    } else {
-//                        fragmentTransaction.show(holographicFragment);
-//                    }
+                   // } else {
+                   //    fragmentTransaction.show(holographicFragment);
+                  // }
 
                 }
 
@@ -167,14 +172,17 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 holographicRelativeLayout.setVisibility(View.INVISIBLE);
                 fingerprintRelativeLayout.setVisibility(View.INVISIBLE);
                 seatRelativeLayout.setVisibility(View.INVISIBLE);
-                returnRelativeLayout.setVisibility(View.VISIBLE);
-                finish();
+                returnRelativeLayout.setVisibility(View.INVISIBLE);
+                 finish();
+                removeFragment(fragmentTransaction);
+
                 break;
 
             default:
                 break;
         }
         fragmentTransaction.commit();
+    }
     }
 
     //隐藏所有的fragment
@@ -203,4 +211,28 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         returnTv.setTextColor(getResources().getColor(R.color.textNoSelect));
     }
 
+
+    //隐藏所有的fragment
+    private void  removeFragment(FragmentTransaction fragmentTransaction) {
+        if (fingerPrint != null) {
+            fragmentTransaction.remove(fingerPrint);
+            fingerPrint=null;
+        }
+        if (seatFragment != null) {
+            fragmentTransaction.remove(seatFragment);
+            seatFragment=null;
+        }
+        if (holographicFragment != null) {
+            fragmentTransaction.remove(holographicFragment);
+            holographicFragment=null;
+        }
+        if (fragmentreplace != null) {
+            fragmentTransaction.remove(fragmentreplace);
+            fragmentreplace=null;
+        }
+        if (holoreplace != null) {
+            fragmentTransaction.remove(holoreplace);
+            holoreplace=null;
+        }
+    }
 }

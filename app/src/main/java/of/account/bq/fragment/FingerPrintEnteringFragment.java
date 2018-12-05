@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,10 +44,11 @@ public class FingerPrintEnteringFragment extends Fragment {
     private RelativeLayout relativeLayout1;
     private RelativeLayout relativeLayout2;
     private RelativeLayout relativeLayout3;
-    public static int SHOW_CURRENT_USER=1;
+    public static int SHOW_CURRENT_USER = 1;
     private ParticleSmasher mSmasher;
-    List<PersonInfo> users = new ArrayList<PersonInfo>();
-    PersonInfo personInfo;
+    private List<PersonInfo> users = new ArrayList<PersonInfo>();
+    private PersonInfo personInfo;
+    private static boolean lock_click = true;//防止同时点击多个view 跳转冲突
 
     @Nullable
     @Override
@@ -74,6 +76,7 @@ public class FingerPrintEnteringFragment extends Fragment {
         relativeLayout1 = view.findViewById(R.id.first_user);
         relativeLayout2 = view.findViewById(R.id.second_user);
         relativeLayout3 = view.findViewById(R.id.third_user);
+        lock_click=true;
     }
 
     private void initViewsClick() {
@@ -117,36 +120,42 @@ public class FingerPrintEnteringFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (users.size() < 3) {
-                    text1.setVisibility(View.GONE);
-                    back1.setVisibility(View.GONE);
+                    if (lock_click) {
+                        text1.setVisibility(View.GONE);
+                        back1.setVisibility(View.GONE);
+                        MainActivity.enable_jump = false;
+                        lock_click = false;
+                        mSmasher.with(back1)
+                                .setStyle(SmashAnimator.STYLE_FLOAT_LEFT)
+                                .setHorizontalMultiple(2)
+                                .setVerticalMultiple(2)
+                                .setDuration(1500)
+                                .addAnimatorListener(new SmashAnimator.OnAnimatorListener() {
+                                    @Override
+                                    public void onAnimatorStart() {
+                                        super.onAnimatorStart();
+                                        // 回调，动画开始
+                                    }
 
-                    mSmasher.with(back1)
-                            .setStyle(SmashAnimator.STYLE_FLOAT_LEFT)
-                            .setHorizontalMultiple(2)
-                            .setVerticalMultiple(2)
-                            .setDuration(1500)
-                            .addAnimatorListener(new SmashAnimator.OnAnimatorListener() {
-                                @Override
-                                public void onAnimatorStart() {
-                                    super.onAnimatorStart();
-                                    // 回调，动画开始
-                                }
+                                    @Override
+                                    public void onAnimatorEnd() {
+                                        super.onAnimatorEnd();
+                                        // 回调，动画结束
+                                        getFragmentManager().popBackStack();
+                                        MainActivity.fragmentreplace = new WhetherAssociationFragment();
+                                        MainActivity.flag = true;
+                                        getFragmentManager()
+                                                .beginTransaction()
+                                                .addToBackStack(null)
+                                                .add(R.id.mainFragment, MainActivity.fragmentreplace)
+                                                .commit();
+                                        MainActivity.enable_jump = true;
+                                        lock_click=true;
 
-                                @Override
-                                public void onAnimatorEnd() {
-                                    super.onAnimatorEnd();
-                                    // 回调，动画结束
-                                    getFragmentManager().popBackStack();
-                                    MainActivity.fragmentreplace = new WhetherAssociationFragment();
-                                    MainActivity.flag = true;
-                                    getFragmentManager()
-                                            .beginTransaction()
-                                            .addToBackStack(null)
-                                            .add(R.id.mainFragment, MainActivity.fragmentreplace)
-                                            .commit();
-                                }
-                            })
-                            .start();
+                                    }
+                                })
+                                .start();
+                    }
                 } else {
                     // Toast.makeText(getContext(), "用户信息录入已满  请先选择删除右侧用户信息", Toast.LENGTH_LONG).show();
                     OnlyOneToast.makeText(getContext(), "用户信息录入已满  请先选择删除右侧用户信息");
@@ -155,115 +164,132 @@ public class FingerPrintEnteringFragment extends Fragment {
         });
 
         if (users.size() >= 1) {
+
             back2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    text2.setVisibility(View.GONE);
-                    back2.setVisibility(View.GONE);
-                    rectangle1.setVisibility(View.GONE);
-                    mSmasher.with(back2)
-                            .setStyle(SmashAnimator.STYLE_FLOAT_TOP)
-                            .setHorizontalMultiple(2)
-                            .setVerticalMultiple(2)
-                            .setDuration(1500)
-                            .addAnimatorListener(new SmashAnimator.OnAnimatorListener() {
-                                @Override
-                                public void onAnimatorStart() {
-                                    super.onAnimatorStart();
-                                    // 回调，动画开始
-                                }
+                    if (lock_click) {
+                        text2.setVisibility(View.GONE);
+                        back2.setVisibility(View.GONE);
+                        rectangle1.setVisibility(View.GONE);
+                        MainActivity.enable_jump = false;
+                        lock_click = false;
+                        mSmasher.with(back2)
+                                .setStyle(SmashAnimator.STYLE_FLOAT_TOP)
+                                .setHorizontalMultiple(2)
+                                .setVerticalMultiple(2)
+                                .setDuration(1500)
+                                .addAnimatorListener(new SmashAnimator.OnAnimatorListener() {
+                                    @Override
+                                    public void onAnimatorStart() {
+                                        super.onAnimatorStart();
+                                        // 回调，动画开始
+                                    }
 
-                                @Override
-                                public void onAnimatorEnd() {
-                                    super.onAnimatorEnd();
-                                    // 回调，动画结束
-                                    gotoUserInfo(text2.getText().toString());
-                                }
-                            })
-                            .start();
+                                    @Override
+                                    public void onAnimatorEnd() {
+                                        super.onAnimatorEnd();
+                                        // 回调，动画结束
+                                        gotoUserInfo(text2.getText().toString());
+                                    }
+                                })
+                                .start();
+                    }
                 }
             });
             LongClickUtils.setLongClick(new Handler(), back2, 3000, new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    SHOW_CURRENT_USER=1;
+                    SHOW_CURRENT_USER = 1;
                     ShowCurrentUser();
                     return true;
                 }
             });
+
         }
         if (users.size() >= 2) {
+
             back3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    text3.setVisibility(View.GONE);
-                    back3.setVisibility(View.GONE);
-                    rectangle2.setVisibility(View.GONE);
-                    mSmasher.with(back3)
-                            .setStyle(SmashAnimator.STYLE_FLOAT_BOTTOM)
-                            .setHorizontalMultiple(2)
-                            .setVerticalMultiple(2)
-                            .setDuration(1500)
-                            .addAnimatorListener(new SmashAnimator.OnAnimatorListener() {
-                                @Override
-                                public void onAnimatorStart() {
-                                    super.onAnimatorStart();
-                                    // 回调，动画开始
-                                }
+                    if (lock_click) {
+                        text3.setVisibility(View.GONE);
+                        back3.setVisibility(View.GONE);
+                        rectangle2.setVisibility(View.GONE);
+                        MainActivity.enable_jump = false;
+                        lock_click = false;
+                        mSmasher.with(back3)
+                                .setStyle(SmashAnimator.STYLE_FLOAT_BOTTOM)
+                                .setHorizontalMultiple(2)
+                                .setVerticalMultiple(2)
+                                .setDuration(1500)
+                                .addAnimatorListener(new SmashAnimator.OnAnimatorListener() {
+                                    @Override
+                                    public void onAnimatorStart() {
+                                        super.onAnimatorStart();
+                                        // 回调，动画开始
+                                    }
 
-                                @Override
-                                public void onAnimatorEnd() {
-                                    super.onAnimatorEnd();
-                                    // 回调，动画结束
-                                    gotoUserInfo(text3.getText().toString());
-                                }
-                            })
-                            .start();
+                                    @Override
+                                    public void onAnimatorEnd() {
+                                        super.onAnimatorEnd();
+                                        // 回调，动画结束
+                                        gotoUserInfo(text3.getText().toString());
+                                    }
+                                })
+                                .start();
+                    }
                 }
             });
+
             LongClickUtils.setLongClick(new Handler(), back3, 3000, new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    SHOW_CURRENT_USER=2;
+                    SHOW_CURRENT_USER = 2;
                     ShowCurrentUser();
                     return true;
                 }
             });
         }
         if (users.size() >= 3) {
+
             back4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    text4.setVisibility(View.GONE);
-                    back4.setVisibility(View.GONE);
-                    rectangle3.setVisibility(View.GONE);
-                    mSmasher.with(back4)
-                            .setStyle(SmashAnimator.STYLE_FLOAT_RIGHT)
-                            .setHorizontalMultiple(2)
-                            .setVerticalMultiple(2)
-                            .setDuration(1500)
-                            .addAnimatorListener(new SmashAnimator.OnAnimatorListener() {
-                                @Override
-                                public void onAnimatorStart() {
-                                    super.onAnimatorStart();
-                                    // 回调，动画开始
-                                }
+                    if (lock_click) {
+                        text4.setVisibility(View.GONE);
+                        back4.setVisibility(View.GONE);
+                        rectangle3.setVisibility(View.GONE);
+                        MainActivity.enable_jump = false;
+                        lock_click = false;
+                        mSmasher.with(back4)
+                                .setStyle(SmashAnimator.STYLE_FLOAT_RIGHT)
+                                .setHorizontalMultiple(2)
+                                .setVerticalMultiple(2)
+                                .setDuration(1500)
+                                .addAnimatorListener(new SmashAnimator.OnAnimatorListener() {
+                                    @Override
+                                    public void onAnimatorStart() {
+                                        super.onAnimatorStart();
+                                        // 回调，动画开始
+                                    }
 
-                                @Override
-                                public void onAnimatorEnd() {
-                                    super.onAnimatorEnd();
-                                    // 回调，动画结束
-                                    gotoUserInfo(text4.getText().toString());
-                                }
-                            })
-                            .start();
+                                    @Override
+                                    public void onAnimatorEnd() {
+                                        super.onAnimatorEnd();
+                                        // 回调，动画结束
+                                        gotoUserInfo(text4.getText().toString());
+                                    }
+                                })
+                                .start();
+                    }
                 }
             });
 
             LongClickUtils.setLongClick(new Handler(), back4, 3000, new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    SHOW_CURRENT_USER=3;
+                    SHOW_CURRENT_USER = 3;
                     ShowCurrentUser();
                     return true;
                 }
@@ -271,30 +297,27 @@ public class FingerPrintEnteringFragment extends Fragment {
         }
 
     }
-     private  void ShowCurrentUser(){
-         if(SHOW_CURRENT_USER>users.size())
-         {
-             SHOW_CURRENT_USER=1;
-         }
-         if(SHOW_CURRENT_USER==1)
-         {
-             rectangle1.setVisibility(View.VISIBLE);
-             rectangle2.setVisibility(View.INVISIBLE);
-             rectangle3.setVisibility(View.INVISIBLE);
-         }
-         else if(SHOW_CURRENT_USER==2)
-         {
-             rectangle1.setVisibility(View.INVISIBLE);
-             rectangle2.setVisibility(View.VISIBLE);
-             rectangle3.setVisibility(View.INVISIBLE);
-         }
-         else  if(SHOW_CURRENT_USER==3){
-             rectangle1.setVisibility(View.INVISIBLE);
-             rectangle2.setVisibility(View.INVISIBLE);
-             rectangle3.setVisibility(View.VISIBLE);
-         }
 
-     }
+    private void ShowCurrentUser() {
+        if (SHOW_CURRENT_USER > users.size()) {
+            SHOW_CURRENT_USER = 1;
+        }
+        if (SHOW_CURRENT_USER == 1) {
+            rectangle1.setVisibility(View.VISIBLE);
+            rectangle2.setVisibility(View.INVISIBLE);
+            rectangle3.setVisibility(View.INVISIBLE);
+        } else if (SHOW_CURRENT_USER == 2) {
+            rectangle1.setVisibility(View.INVISIBLE);
+            rectangle2.setVisibility(View.VISIBLE);
+            rectangle3.setVisibility(View.INVISIBLE);
+        } else if (SHOW_CURRENT_USER == 3) {
+            rectangle1.setVisibility(View.INVISIBLE);
+            rectangle2.setVisibility(View.INVISIBLE);
+            rectangle3.setVisibility(View.VISIBLE);
+        }
+
+    }
+
     private void gotoUserInfo(int i) {
         personInfo = users.get(i);
         AssociateFingerSucceedFragment.s = personInfo.getFingerId();
@@ -302,6 +325,7 @@ public class FingerPrintEnteringFragment extends Fragment {
         AssociateFaceSucceedFragment.name = personInfo.getName();
         MainActivity.fragmentreplace = new UserInfoFragment();
         MainActivity.flag = true;
+        MainActivity.enable_jump = true;
         getFragmentManager().popBackStack();
         getFragmentManager()
                 .beginTransaction()
@@ -311,19 +335,20 @@ public class FingerPrintEnteringFragment extends Fragment {
     }
 
     private void gotoUserInfo(String name) {
-
         personInfo = MainActivity.dataOperator.queryOne(name);
         if (personInfo != null) {
             AssociateFingerSucceedFragment.s = personInfo.getFingerId();
             AssociateFaceSucceedFragment.drawable = personInfo.getFace();
             AssociateFaceSucceedFragment.name = personInfo.getName();
             MainActivity.fragmentreplace = new UserInfoFragment();
-            MainActivity.flag = true;
             getFragmentManager().popBackStack();
+            MainActivity.flag = true;
             getFragmentManager()
                     .beginTransaction()
                     .addToBackStack(null)
                     .add(R.id.mainFragment, MainActivity.fragmentreplace).commit();
+            MainActivity.enable_jump = true;
+            lock_click = true;
         }
     }
 

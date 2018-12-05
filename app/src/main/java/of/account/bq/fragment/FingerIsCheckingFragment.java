@@ -37,6 +37,7 @@ public class FingerIsCheckingFragment extends Fragment {
 
     private void initView(View view) {
         gifImageView = view.findViewById(R.id.iv_fingering);
+        MainActivity.enable_jump=false;
         gifImageView.setAlpha(0.55f);
         gifImageView.setGifResource(R.mipmap.fingergif, new GifImageView.OnPlayListener() {
             @Override
@@ -69,6 +70,7 @@ public class FingerIsCheckingFragment extends Fragment {
                         .beginTransaction()
                         .hide(MainActivity.holoreplace)
                         .commit();
+                MainActivity.enable_jump=true;
                 MainActivity.holoreplace = new BuyHolographicsSucceedFragment();
                 getFragmentManager()
                         .beginTransaction()
